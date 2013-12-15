@@ -38,3 +38,14 @@ dependencies {
     compile 'com.android.support:support-v4:19.0.0'
     compile 'com.android.support:appcompat-v7:19.0.0'
 }
+
+repositories {
+    maven {
+        url 'https://github.com/Goddchen/mvn-repo/raw/master/'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.android:volley:1.0'
+}
