@@ -1,11 +1,20 @@
 package com.gdg.hsllive;
 
+import android.app.FragmentTransaction;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
+
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -19,11 +28,16 @@ public class MainActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    GoogleMap map;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setMapLocation();
+
+
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -35,6 +49,21 @@ public class MainActivity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
+SupportMapFragment mMapFragment;
+
+private void setMapLocation() {
+    mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+    map = mMapFragment.getMap();
+    map.setMyLocationEnabled(true);
+
+    map.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+        @Override
+        public void onMyLocationChange(Location location) {
+            Toast.makeText(getApplicationContext(),"Location changed",Toast.LENGTH_LONG).show();
+        }
+    });
+
+    }
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // TODO: update the main content by replacing fragments
