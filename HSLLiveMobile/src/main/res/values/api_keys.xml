@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="MAPS_API_KEY"><!-- Please add your Google Maps API KEY --></string>
+    <string name="MAPS_API_KEY"><!-- Create the MAP API KEY for release keystore --></string>
 </resources>
